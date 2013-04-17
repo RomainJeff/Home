@@ -1,0 +1,21 @@
+{
+    "Database":
+    {
+        "default": 
+        {
+            "sgbd": "sqlite",
+            "base": "config.db",
+            "char": "utf8"
+        },
+
+        "test":
+        {
+            "sgbd": "mysql",
+            "host": "localhost",
+            "user": "root",
+            "pass": "",
+            "base": "test",
+            "char": "utf8"
+        }
+    }
+}
