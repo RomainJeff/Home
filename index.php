@@ -12,6 +12,28 @@ Autoloader::initialize();
 
 
 # ================================================================ #
+# On stock dans le container
+# ================================================================ #
+Container::set('template', new Template());
+Container::set('default', new Connexion());
+
+
+# ================================================================ #
+# On charge les plugins
+# ================================================================ #
+Plugin::load([
+	'GoogleSearch'
+]);
+
+
+# ================================================================ #
+# On stock les preferences et on l'envoie a la vue
+# ================================================================ #
+Container::get('template')->set([
+	'preferences'	=> Container::get('default')->query("SELECT * FROM preferences WHERE id = 1")
+]);
+
+# ================================================================ #
 # On stock les données necessaires a l'application
 # ================================================================ #
 $currentPage = isset ($_GET['page']) ? $_GET['page'] : 'index';
@@ -22,19 +44,21 @@ $currentPage = isset ($_GET['page']) ? $_GET['page'] : 'index';
 # ================================================================ #
 Routeur::connect('index', function () {
 
-	$defaultConnexion = new Connexion();
 	$ignored = [];
 
-	foreach ($defaultConnexion->query("SELECT directory FROM ignore", true) as $key => $value) {
+	foreach (Container::get('default')->query("SELECT directory FROM ignore", true) as $key => $value) {
 		array_push($ignored, $value->directory);
 	}
 
 	$fileManager = new File();
 	$listing = $fileManager->liste($ignored);
 
-	foreach ($listing AS $key => $value) {
-		echo $value ."<br>";
-	}
+	Container::get('template')->set([
+		'folders'	=> 	$listing,
+		'config'	=>  $fileManager->config()
+	]);
+
+	Container::get('template')->render('index.tpl');
 
 });
 
@@ -44,7 +68,12 @@ Routeur::connect('index', function () {
 # ================================================================ #
 Routeur::connect('config', function () {
 
-	echo "Configurations";
+	Container::get('template')->set([
+		'message' 	=> ''
+	]);
+
+	Container::get('template')->render('config.tpl');
+
 });
 
 

@@ -12,11 +12,13 @@ Config::register();
  */
 Config::write('System', [
     'host'      => $_SERVER['SERVER_NAME'],
-    'debug'     => 1,
+    'debug'     => 0,
     'root'      => dirname(__FILE__),
     'lib'       => dirname(__FILE__) .'/lib',
     'datas'     => dirname(__FILE__) .'/datas',
-    'webroot'   => '/'. $ressourceFolder .'/webroot'
+    'layout'    => dirname(__FILE__) .'/view/layout',
+    'view'      => dirname(__FILE__) .'/view',
+    'webroot'   => '/'. $ressourceFolder .'webroot'
 ]);
 
 # ================================================================= #

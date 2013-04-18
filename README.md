@@ -1,5 +1,7 @@
 # Addweb Accueil
 
+<img src="http://image.noelshack.com/fichiers/2013/16/1366323742-addwebhome.png">
+
 ## Installation
 Pour l'installer rien de plus simple !
 Téléchargez le zip: https://bitbucket.org/RomainJeff/addweb-homepage/get/master.zip
