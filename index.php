@@ -44,7 +44,7 @@ $currentPage = str_replace ('/index.php', '', $_SERVER['REQUEST_URI']);
 # ================================================================ #
 Routeur::connect('/', function () {
 
-	$ignored = [];
+	$ignored = array();
 
 	foreach (Container::get('default')->query("SELECT directory FROM ignore", true) as $key => $value) {
 		array_push($ignored, $value->directory);
