@@ -16,7 +16,7 @@ if ($type == "getAll") {
         if (!empty ($flux) ):
         foreach ($flux as $key => $datas): 
      ?>
-        <div onclick="window.location = '<?= $datas->guid; ?>';" class="lg span4 box <?= $datas->categorieInfos['color']; ?>">
+        <div onclick="window.open('<?= $datas->guid; ?>');" class="lg span4 box <?= $datas->categorieInfos['color']; ?>">
             <br>
             <div style="margin-left: 10px; margin-right: 10px;">
                 <small><?= $datas->fluxInfos['name']; ?>:</small><br><div style="border-bottom: solid 1px white;margin-bottom:2px"></div>
