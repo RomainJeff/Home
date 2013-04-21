@@ -8,6 +8,13 @@
             "char": "utf8"
         },
 
+        "rss":
+        {
+            "sgbd": "sqlite",
+            "base": "rss.db",
+            "char": "utf8"
+        },
+
         "test":
         {
             "sgbd": "mysql",

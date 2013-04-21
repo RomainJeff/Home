@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Pour reset les autoincrement
+ * DELETE FROM sqlite_sequence WHERE name="Database"
+ */
+
 class Connexion
 {
 
@@ -58,6 +63,13 @@ class Connexion
         }
 
         return $result;
+    }
+
+    public function execute ( $request ) 
+    {
+        //echo $request ."<br><br>";
+        $query = Connexion::$connections[$this->database]->prepare($request);
+        return $query->execute();
     }
 
 }

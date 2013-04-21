@@ -2,6 +2,8 @@
 
 require_once dirname( __FILE__ ) ."/lib/config.php";
 
+header('Content-type: text/html; charset=utf-8');
+
 /**
  * On initialise le configurateur
  */
@@ -20,6 +22,7 @@ Config::write('System', [
     'view'      => dirname(__FILE__) .'/view',
     'webroot'   => '/'. $ressourceFolder .'webroot'
 ]);
+
 
 # ================================================================= #
 

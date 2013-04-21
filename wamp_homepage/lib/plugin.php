@@ -6,11 +6,13 @@ class Plugin
     public static function load (array $plugin)
     {
         foreach ($plugin as $key => $plugin) {
+            
             $pluginLower = strtolower ($plugin);
-
-            require_once Config::get('System')['lib'] ."/plugin/". $pluginLower .".php";
+            $plugin = "Plugin_". $plugin;
 
             Container::set($pluginLower, new $plugin);
+
+            Container::get($pluginLower)->display();
         }
     }
 

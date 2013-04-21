@@ -14,7 +14,7 @@
             <div class="right" style="margin-right: 10px;">
                 <!-- Infos utilisateur -->
                 <div class="span2 name" style="text-align: center">
-                    Configurations
+                    Préférences
                 </div>
                 
             </div>
@@ -26,39 +26,13 @@
 
                     <?= $this->fetch('content'); ?>
                 </div>
+
+                <?php $this->inc('Rss/home.tpl'); ?>
+
             </div>
 
         </div>
 
         <script type="text/javascript" src="<?= $url; ?>/js/jquery.js"></script>
-        <script type="text/javascript">
-            function OpenWindow( id ) {
-                $('#'+ id).fadeToggle();
-            }
-
-            function OpenApp( id ) {
-                if( id == 'preference' ) {
-                    $('body').css('background', '#f8f8f8');
-                }
-                $('#global').fadeOut();
-                $('#'+ id).delay(500).fadeIn();
-            }
-
-            function CloseApp( id ) {
-                if( id == 'preference' ) {
-                    $('body').css('background', 'url(<?= $url; ?>/img/<?= $Preferences->background; ?>)');
-                }
-                $('#'+ id).fadeOut();
-                $('#global').delay(500).fadeIn();
-            }
-
-            $('#chercher').keydown(function(e){
-                if(e.which == 13) {
-                    var search = $('#chercher').val();
-                    window.open('http://google.fr/hl=fr&tbo=d&output=search&q='+ search +'&oq='+ search);
-                    OpenWindow('recherche_google');
-                }
-            });
-        </script>
     </body>
 </html>

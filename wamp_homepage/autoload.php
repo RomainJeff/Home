@@ -16,6 +16,7 @@ class Autoloader
     public function autoload ($class)
     {
         $class = strtolower ( $class );
+        $class = str_replace ('_', '/', $class);
 
         $classPath = Config::get('System')['lib'] ."/". $class .".php";
 

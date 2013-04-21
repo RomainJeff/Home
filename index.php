@@ -22,7 +22,7 @@ Container::set('default', new Connexion());
 # On charge les plugins
 # ================================================================ #
 Plugin::load([
-	'GoogleSearch'
+	'Rss_Reader'
 ]);
 
 
@@ -36,13 +36,13 @@ Container::get('template')->set([
 # ================================================================ #
 # On stock les données necessaires a l'application
 # ================================================================ #
-$currentPage = isset ($_GET['page']) ? $_GET['page'] : 'index';
+$currentPage = str_replace ('/index.php', '', $_SERVER['REQUEST_URI']);
 
 
 # ================================================================ #
 # Regle de routing pour la page index
 # ================================================================ #
-Routeur::connect('index', function () {
+Routeur::connect('/', function () {
 
 	$ignored = [];
 
@@ -66,7 +66,7 @@ Routeur::connect('index', function () {
 # ================================================================ #
 # Regle de routing pour la page config
 # ================================================================ #
-Routeur::connect('config', function () {
+Routeur::connect('/config', function () {
 
 	Container::get('template')->set([
 		'message' 	=> ''

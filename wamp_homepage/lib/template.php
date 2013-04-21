@@ -44,6 +44,8 @@ class Template
     public function render ($view)
     {
         $this->datas['url'] = "http://". Config::get('System')['host'].Config::get('System')['webroot'];
+        $this->datas['href'] = "http://". Config::get('System')['host'] ."/index.php";
+        //var_dump($this->datas);die();
         extract($this->datas);
 
         ob_start();
@@ -82,9 +84,15 @@ class Template
      * A UTILISER DANS LA VUE !
      * $this->end();
      */
-    private function end()
+    private function end ()
     {
         $this->block[$this->currentblock] = ob_get_clean();
+    }
+
+    private function inc ($tpl)
+    {
+        extract($this->datas);
+        include Config::get('System')['view'] ."/". $tpl;
     }
 
 }
