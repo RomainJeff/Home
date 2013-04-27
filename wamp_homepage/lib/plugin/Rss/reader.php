@@ -68,7 +68,12 @@ class Plugin_Rss_Reader
      */
     public function read ($url)
     {
-        $fileRss = simplexml_load_file($url);
+        $fileRss = @simplexml_load_file($url);
+
+        if ( !$fileRss ) {
+            return false;
+        }
+
         $channel = $fileRss->channel;
 
         Container::get('rss_cache')->save([

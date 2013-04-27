@@ -60,6 +60,7 @@ class File
                 file_put_contents($fullDir, '
 {
     "title": "'. $dir .'",
+    "font": "Entypo",
     "couleur": "blue",
     "icone": "&#128230;",
     "span": "2",

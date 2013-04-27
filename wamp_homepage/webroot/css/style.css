@@ -4,6 +4,12 @@
 		 url('../font/entypo.svg#entypo') format('svg');
 }
 
+@font-face {
+	font-family: "Brankic";
+	src: url('../font/brankic1979.ttf#entypo') format('truetype'),
+		 url('../font/brankic1979.svg#entypo') format('svg');
+}
+
 /**
  * Reset CSS
 **/
@@ -233,13 +239,55 @@ img.avatar {
 	background: #d52b59;
 }
 
+.box.purple {
+	background: #735792;
+}
+
+.box.purple:hover {
+	background: #86749e;
+}
+
+.box.darkblue {
+	background: #285b9d;
+}
+
+.box.darkblue:hover {
+	background: #5377a7;
+}
+
+.box.red {
+	background: #fe2e2e;
+}
+
+.box.red:hover {
+	background: #ea5858;
+}
+
+.box.lightblue {
+	background: #5fb5cc;
+}
+
+.box.lightblue:hover {
+	background: #7bb6c6;
+}
+
 .box small {
 	padding-left: 10px;
 }
 
-span.icon {
+span.icon.Entypo {
 	font-family: "Entypo";
 	font-size: 5em;
+}
+
+center.Brankic_ {
+	margin-top: 15px;
+	margin-bottom: -3px;
+}
+
+span.icon.Brankic {
+	font-family: "Brankic";
+	font-size: 3em;
 }
 
 h3 span.icon {
@@ -462,4 +510,15 @@ input[type=text]:focus {
 }
 .clearfix {
 	clear: both;
+}
+
+.button {
+	background: #ddd;
+	padding: 10px 15px;
+	border: none;
+	font-family: 'Segoe UI Light', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+}
+
+.button:hover {
+	background: #E3E3E3;
 }
