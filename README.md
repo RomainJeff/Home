@@ -1,6 +1,6 @@
 # Addweb Home
 
-![Addweb Home](http://image.noelshack.com/fichiers/2013/16/1366323742-addwebhome.png)
+![Addweb Home](http://sopht.fr/home/logo.png)
 
 ## Installation 
 Pour l'installer rien de plus simple ! 
