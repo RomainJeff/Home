@@ -44,7 +44,7 @@ $currentPage = str_replace ('/index.php', '', $_SERVER['REQUEST_URI']);
 # ================================================================ #
 Routeur::connect('/', function () {
 
-	$ignored = array();
+	$ignored = [];
 
 	foreach (Container::get('default')->query("SELECT directory FROM ignore", true) as $key => $value) {
 		array_push($ignored, $value->directory);
@@ -64,14 +64,38 @@ Routeur::connect('/', function () {
 
 
 # ================================================================ #
+# Regle de routing pour la recursivite des dossiers
+# ================================================================ #
+Routeur::connect('/folder/(.*)', function () {
+
+	$ignored = [];
+
+	foreach (Container::get('default')->query("SELECT directory FROM ignore", true) as $key => $value) {
+		array_push($ignored, $value->directory);
+	}
+
+	$dir = $_GET[0];
+	$fileManager = new File(dirname( __FILE__ ) .'/'. $dir);
+	$listing = $fileManager->recursive();
+
+	Container::get('template')->set([
+		'folderName'=>  $dir,
+		'folders'	=> 	$listing,
+		'config'	=>  $fileManager->config()
+	]);
+
+	Container::get('template')->layout('recursive');
+	Container::get('template')->render('folder.tpl');
+
+});
+
+
+# ================================================================ #
 # Regle de routing pour la page config
 # ================================================================ #
 Routeur::connect('/config', function () {
 
-	Container::get('template')->set([
-		'message' 	=> ''
-	]);
-
+	Container::get('template')->layout('config');
 	Container::get('template')->render('config.tpl');
 
 });
