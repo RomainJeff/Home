@@ -23,7 +23,13 @@ class Routeur
     {
         foreach (Routeur::$urls AS $page => $functions) {
 
-            if ($current == $page) {
+            if (preg_match('`^'. $page .'$`', $current, $matches)) {
+
+                foreach ($matches as $key => $value) {
+                    if ($key != 0) {
+                        $_GET[] = $value;
+                    }
+                }
 
                 $functions();
 

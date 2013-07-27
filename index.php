@@ -21,9 +21,9 @@ Container::set('default', new Connexion());
 # ================================================================ #
 # On charge les plugins
 # ================================================================ #
-Plugin::load([
-	'Rss_Reader'
-]);
+// Plugin::load([
+// 	'Rss_Reader'
+// ]);
 
 
 # ================================================================ #
@@ -64,14 +64,48 @@ Routeur::connect('/', function () {
 
 
 # ================================================================ #
+# Regle de routing pour la recursivite des dossiers
+# ================================================================ #
+Routeur::connect('/folder/(.*)', function () {
+
+	$ignored = [];
+
+	foreach (Container::get('default')->query("SELECT directory FROM ignore", true) as $key => $value) {
+		array_push($ignored, $value->directory);
+	}
+
+	$dir = $_GET[0];
+	$fileManager = new File(dirname( __FILE__ ) .'/'. $dir);
+	$listing = $fileManager->recursive();
+
+	Container::get('template')->set([
+		'folderName'=>  $dir,
+		'folders'	=> 	$listing,
+		'config'	=>  $fileManager->config()
+	]);
+
+	Container::get('template')->layout('recursive');
+	Container::get('template')->render('folder.tpl');
+
+});
+
+
+# ================================================================ #
 # Regle de routing pour la page config
 # ================================================================ #
 Routeur::connect('/config', function () {
 
-	Container::get('template')->set([
-		'message' 	=> ''
-	]);
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+		if (!empty($_FILES['background'])) {
+			move_uploaded_file($_FILES['background']['tmp_name'], dirname( __FILE__ ) ."/wamp_homepage/webroot/img/bg.jpg");
+			header('Location: /index.php/config');
+			exit;
+		}
+
+	}
+
+	Container::get('template')->layout('config');
 	Container::get('template')->render('config.tpl');
 
 });

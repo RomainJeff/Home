@@ -11,6 +11,7 @@ class Plugin_Rss_Reader
         'Apr'   => '04',
         'Avr'   => '04',
         'Mai'   => '05',
+        'May'   => '05',
         'Jun'   => '06',
         'Jul'   => '07',
         'Jui'   => '07',
@@ -19,7 +20,7 @@ class Plugin_Rss_Reader
         'Sep'   => '09',
         'Oct'   => '10',
         'Nov'   => '11',
-        'Dec'   => '12'
+        'Dec'   => '12',
     ];
 
     public function __construct ()
@@ -68,7 +69,12 @@ class Plugin_Rss_Reader
      */
     public function read ($url)
     {
-        $fileRss = simplexml_load_file($url);
+        $fileRss = @simplexml_load_file($url);
+
+        if ( !$fileRss ) {
+            return false;
+        }
+
         $channel = $fileRss->channel;
 
         Container::get('rss_cache')->save([
