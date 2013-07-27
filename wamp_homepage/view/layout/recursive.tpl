@@ -9,7 +9,7 @@
         <script type="text/javascript" src="<?= $url; ?>/js/jquery.js"></script>
     </head>
     
-    <body style="background: url('<?= $url; ?>/img/<?= $preferences->background; ?>');">
+    <body style="background: url('<?= $url; ?>/img/<?= $preferences->background; ?>') no-repeat center fixed; -webkit-background-size: cover;">
         
         <div id="global" class="container">
 
