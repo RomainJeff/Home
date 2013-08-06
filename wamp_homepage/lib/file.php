@@ -6,12 +6,13 @@ class File
     public $folder = __DIR__;
     public $listing = [];
     public $config = [];
+    public $recursive;
 
     /**
      * Constructeur de la classe
      * @param   string  folder
      **/
-    public function __construct ($folder = null)
+    public function __construct ($folder = null, $recursive = false)
     {
         if ( ! empty ($folder) ) {
             $this->folder = $folder;
@@ -83,13 +84,14 @@ class File
     /**
      * Permet de recuperer les configurations de chaques projets
      */
-    public function config ()
+    public function config ($recursive = false)
     {
         foreach ($this->listing as $key => $dir) {
             $fullDir = $this->folder .'/'. $dir .'/addwebhome.json';
             
-            if ( ! file_exists ($fullDir) ) {
-                file_put_contents($fullDir, '
+            if ( !$recursive ) {
+                if ( ! file_exists ($fullDir) ) {
+                    file_put_contents($fullDir, '
 {
     "title": "'. $dir .'",
     "font": "Entypo",
@@ -98,11 +100,21 @@ class File
     "span": "2",
     "link": "/index.php/folder/'. $dir .'"
 }
-                ');
-            }
+                    ');
+                }
 
-            $configFile = file_get_contents($fullDir);
-            $this->config[$dir] = json_decode($configFile, true);
+                $configFile = file_get_contents($fullDir);
+                $this->config[$dir] = json_decode($configFile, true);
+            } else {
+                $this->config[$dir] = [
+                    'title'     => $dir,
+                    'font'      => "Entypo",
+                    'couleur'   => "blue",
+                    'icone'     => "&#128230;",
+                    'span'      => "2",
+                    'link'      => "/index.php/folder/". $dir
+                ];
+            }
         }
 
         return $this->config;
