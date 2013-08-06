@@ -78,9 +78,11 @@ class File
                 }
             }
 
-            if ( is_file ($this->folder .'/'. $directory ) && $directory == 'index.php') {
+            if ( is_file ($this->folder .'/'. $directory ) ) {
 
-                $this->listing[] = $directory;
+                if ($directory == 'index.php' || $directory == 'index.html') {
+                    $this->listing[] = $directory;
+                }
 
             }
         }
@@ -114,7 +116,7 @@ class File
                 $this->config[$dir] = json_decode($configFile, true);
 
             } else {
-                if ($dir == 'index.php') {
+                if ($dir == 'index.php' || $dir == 'index.html') {
 
                     $this->config[$dir] = [
                         'title'     => $dir,
