@@ -3,9 +3,9 @@
 <?php $this->end(); ?>
 
 <?php foreach ($folders as $key => $name): ?>
-    <div onclick="window.location = '/index.php/folder/<?= $folderName; ?>/<?= $name; ?>';" class="lg span2 box blue">
+    <div onclick="window.location = '<?php if ($config[$name]['link'] == 'folder'): ?>/index.php/folder/<?= $folderName . "/". $name; ?><?php else: ?>/<?= $folderName ."/". $name; ?><?php endif; ?>';" class="lg span2 box <?= $config[$name]['couleur']; ?>">
         <center class="Entypo_">
-            <span class="icon Entypo">&#128230;</span>
+            <span class="icon Entypo"><?= $config[$name]['icone']; ?></span>
         </center><br>
         <small>
             <?= $name; ?>

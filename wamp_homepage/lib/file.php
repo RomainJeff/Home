@@ -77,6 +77,12 @@ class File
                     $this->listing[] = $directory;
                 }
             }
+
+            if ( is_file ($this->folder .'/'. $directory ) && $directory == 'index.php') {
+
+                $this->listing[] = $directory;
+
+            }
         }
         return $this->listing;
     }
@@ -91,6 +97,7 @@ class File
             
             if ( !$recursive ) {
                 if ( ! file_exists ($fullDir) ) {
+
                     file_put_contents($fullDir, '
 {
     "title": "'. $dir .'",
@@ -105,15 +112,28 @@ class File
 
                 $configFile = file_get_contents($fullDir);
                 $this->config[$dir] = json_decode($configFile, true);
+
             } else {
-                $this->config[$dir] = [
-                    'title'     => $dir,
-                    'font'      => "Entypo",
-                    'couleur'   => "blue",
-                    'icone'     => "&#128230;",
-                    'span'      => "2",
-                    'link'      => "/index.php/folder/". $dir
-                ];
+                if ($dir == 'index.php') {
+
+                    $this->config[$dir] = [
+                        'title'     => $dir,
+                        'font'      => "Entypo",
+                        'couleur'   => "orange",
+                        'icone'     => "&#9729;",
+                        'span'      => "2",
+                        'link'      => "fichier"
+                    ];
+                } else {
+                    $this->config[$dir] = [
+                        'title'     => $dir,
+                        'font'      => "Entypo",
+                        'couleur'   => "blue",
+                        'icone'     => "&#128230;",
+                        'span'      => "2",
+                        'link'      => "folder"
+                    ];
+                }
             }
         }
 
