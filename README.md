@@ -5,7 +5,7 @@
 ## Installation 
 Pour l'installer rien de plus simple ! 
 
-Téléchargez le zip: [ici](https://bitbucket.org/RomainJeff/addweb-homepage/get/master.zip)
+Téléchargez le zip
 
 Décompressez le avec le logiciel de votre choix.
 
