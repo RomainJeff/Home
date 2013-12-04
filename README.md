@@ -1,6 +1,6 @@
-# Addweb Home
+# Home
 
-![Addweb Home](http://sopht.fr/home/logo.png)
+![Home](http://sopht.fr/home/logo.png)
 
 ## Installation 
 Pour l'installer rien de plus simple ! 
