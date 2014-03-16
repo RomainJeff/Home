@@ -1,14 +1,4 @@
-@font-face {
-	font-family: "Entypo";
-	src: url('../font/entypo.ttf#entypo') format('truetype'),
-		 url('../font/entypo.svg#entypo') format('svg');
-}
-
-@font-face {
-	font-family: "Brankic";
-	src: url('../font/brankic1979.ttf#entypo') format('truetype'),
-		 url('../font/brankic1979.svg#entypo') format('svg');
-}
+@import "icons.css";
 
 /**
  * Reset CSS
@@ -276,25 +266,6 @@ img.avatar {
 	padding-left: 10px;
 }
 
-span.icon.Entypo {
-	font-family: "Entypo";
-	font-size: 5em;
-}
-
-center.Brankic_ {
-	margin-top: 15px;
-	margin-bottom: -3px;
-}
-
-span.icon.Brankic {
-	font-family: "Brankic";
-	font-size: 3em;
-}
-
-h3 span.icon {
-	font-size: 1.5em;
-}
-
 /**
  * TABLE
 **/
@@ -315,12 +286,6 @@ td {
 	padding: 0;
 	line-height: 20px;
 	border: none;
-}
-
-td.icon {
-	font-family: 'Entypo';
-	display: inline-block;
-	font-size: 26px;
 }
 
 tr.green {
