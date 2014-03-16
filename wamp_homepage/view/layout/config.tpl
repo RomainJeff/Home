@@ -21,6 +21,9 @@
                     <li onclick="window.location.href = '/index.php/config/folders';" class="menu <?php if ($page == 'folders'): ?>selected<?php endif; ?>">
                         DOSSIERS
                     </li>
+                    <li onclick="window.location.href = '/index.php/config/ignored';" class="menu <?php if ($page == 'ignored'): ?>selected<?php endif; ?>">
+                        IGNORES
+                    </li>
                     <li onclick="window.location.href = '/';" class="menu">
                         RETOUR SUR HOME
                     </li>

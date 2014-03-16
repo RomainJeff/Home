@@ -198,6 +198,34 @@ Routeur::connect('/config/folders/(.*)', function () {
 
 
 # ================================================================ #
+# Regle de routing pour la page config des dossiers ignores
+# ================================================================ #
+Routeur::connect('/config/ignored', function () {
+
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$delete = !isset($_POST['delete']) ? false : $_POST['delete'];
+		$directory = !isset($_POST['dir']) ? false : $_POST['dir'];
+
+		if ($delete) {
+			Container::get('default')->query("DELETE FROM ignore WHERE directory = '$directory'");
+			echo "<center><h3 style='color:green'>Dossier supprimés des dossiers ignorés</h3></center>";
+		} else {
+			Container::get('default')->query("INSERT INTO ignore (directory) VALUES ('$directory')");
+			echo "<center><h3 style='color:green'>Dossier ajouté aux dossiers ignorés</h3></center>";
+		}
+	}
+
+	Container::get('template')->set([
+		'page'		=> 'ignored',
+		'ignored'	=> Container::get('default')->query("SELECT * FROM ignore", true)
+	]);
+	Container::get('template')->layout('config');
+	Container::get('template')->render('config_ignored.tpl');
+
+});
+
+
+# ================================================================ #
 # Regle de routing pour la page icones
 # ================================================================ #
 Routeur::connect('/icones', function () {
