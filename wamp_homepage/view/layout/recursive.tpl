@@ -15,7 +15,7 @@
 
             <div class="span11" style="margin-right: 10px;">
                 <!-- Infos utilisateur -->
-                <div class="span2 name right" style="text-align: center">
+                <div class="span2 name right" onclick="window.location.href = '/index.php/config';" style="text-align: center">
                     Préférences
                 </div>
 
