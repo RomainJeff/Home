@@ -2,7 +2,7 @@
 
 ## Demonstration
 
-[![Demonstration](http://img.youtube.com/vi/3djU7v5ytMU/0.jpg)](http://www.youtube.com/watch?v=3djU7v5ytMU)
+[![Demonstration](demo.png)](http://www.youtube.com/watch?v=3djU7v5ytMU)
 
 ## Installation 
 
