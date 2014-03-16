@@ -8,7 +8,7 @@
 
 Pour l'installer rien de plus simple ! 
 
-[Téléchargez le zip](https://github.com/RomainJeff/Home/archive/dev.zip)
+[Téléchargez le zip](https://github.com/RomainJeff/Home/archive/master.zip)
 
 Décompressez le avec le logiciel de votre choix.
 
