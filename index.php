@@ -129,10 +129,11 @@ Routeur::connect('/config/folders', function () {
 
 	$fileManager = new File();
 	$listing = $fileManager->liste($ignored);
+	$folderConfig = new FolderConfig();
 
 	Container::get('template')->set([
 		'folders'	=> 	$listing,
-		'config'	=>  $fileManager->config(),
+		'config'	=>  $folderConfig->get(__DIR__, $listing),
 		'page'		=> 'folders'
 	]);
 	Container::get('template')->layout('config');
