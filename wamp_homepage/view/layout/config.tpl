@@ -15,9 +15,15 @@
 
             <div class="span11" style="margin-right: 10px;">
                 <div class="span3">
-                    <li class="menu selected">APPARENCES</li>
-                    <li class="menu">DOSSIERS</li>
-                    <li onclick="window.location.href = '/';" class="menu">RETOUR SUR HOME</li>
+                    <li onclick="window.location.href = '/index.php/config';" class="menu <?php if ($page == 'main'): ?>selected<?php endif; ?>">
+                        APPARENCES
+                    </li>
+                    <li onclick="window.location.href = '/index.php/config/folders';" class="menu <?php if ($page == 'folders'): ?>selected<?php endif; ?>">
+                        DOSSIERS
+                    </li>
+                    <li onclick="window.location.href = '/';" class="menu">
+                        RETOUR SUR HOME
+                    </li>
                 </div>
 
             <div class="span8" style="padding-left: 10px;">

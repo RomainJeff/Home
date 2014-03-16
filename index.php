@@ -52,10 +52,11 @@ Routeur::connect('/', function () {
 
 	$fileManager = new File();
 	$listing = $fileManager->liste($ignored);
+	$folderConfig = new FolderConfig();
 
 	Container::get('template')->set([
 		'folders'	=> 	$listing,
-		'config'	=>  $fileManager->config()
+		'config'	=>  $folderConfig->get(__DIR__, $listing)
 	]);
 
 	Container::get('template')->render('index.tpl');
@@ -105,8 +106,101 @@ Routeur::connect('/config', function () {
 
 	}
 
+	Container::get('template')->set([
+		'page'	=> 'main'
+	]);
 	Container::get('template')->layout('config');
 	Container::get('template')->render('config.tpl');
+
+});
+
+
+# ================================================================ #
+# Regle de routing pour la page config dossiers
+# ================================================================ #
+Routeur::connect('/config/folders', function () {
+
+	$ignored = [];
+
+	foreach (Container::get('default')->query("SELECT directory FROM ignore", true) as $key => $value) {
+		array_push($ignored, $value->directory);
+	}
+
+	$fileManager = new File();
+	$listing = $fileManager->liste($ignored);
+
+	Container::get('template')->set([
+		'folders'	=> 	$listing,
+		'config'	=>  $fileManager->config(),
+		'page'		=> 'folders'
+	]);
+	Container::get('template')->layout('config');
+	Container::get('template')->render('config_folders.tpl');
+
+});
+
+
+# ================================================================ #
+# Regle de routing pour la page config d'un dossier
+# ================================================================ #
+Routeur::connect('/config/folders/(.*)', function () {
+
+	$dir = $_GET[0];
+	$folderConfig = new FolderConfig();
+
+	$colors = [
+		"light",
+		"orange",
+		"blue",
+		"green",
+		"pink",
+		"purple",
+		"darkblue",
+		"red",
+		"lightblue"
+	];
+
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$title = !isset($_POST['title']) ? false : $_POST['title'];
+		$couleur = !isset($_POST['couleur']) ? false : $_POST['couleur'];
+		$icone = !isset($_POST['icone']) ? false : $_POST['icone'];
+		$span = !isset($_POST['span']) ? false : $_POST['span'];
+		$link = !isset($_POST['link']) ? false : $_POST['link'];
+
+		if (!$title || !$couleur || !$icone || !$span || !$link) {
+			echo "<center><h3 style='color:red'>Merci de remplire les champs vides</h3></center>";
+		} else {
+			$folderConfig->update(__DIR__ .'/'. $dir, [
+				'title'		=> $title,
+				'couleur' 	=> $couleur,
+				'icone'		=> $icone,
+				'span'		=> $span,
+				'link'		=> $link
+			]);
+			echo "<center><h3 style='color: green'>Modifications enregistrées</h3></center>";
+		}
+	}
+
+	$configFolder = $folderConfig->getFromFolder(__DIR__ .'/'. $dir);
+
+	Container::get('template')->set([
+		'config'	=>  $configFolder,
+		'page'		=> 'folders',
+		'colors'	=> $colors
+	]);
+	Container::get('template')->layout('config');
+	Container::get('template')->render('config_folders_one.tpl');
+
+});
+
+
+# ================================================================ #
+# Regle de routing pour la page icones
+# ================================================================ #
+Routeur::connect('/icones', function () {
+
+	Container::get('template')->layout('empty');
+	Container::get('template')->render('icones.tpl');
 
 });
 
