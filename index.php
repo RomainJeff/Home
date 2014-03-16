@@ -78,11 +78,12 @@ Routeur::connect('/folder/(.*)', function () {
 	$dir = $_GET[0];
 	$fileManager = new File(dirname( __FILE__ ) .'/'. $dir, true);
 	$listing = $fileManager->recursive();
+	$folderConfig = new FolderConfig();
 
 	Container::get('template')->set([
 		'folderName'=>  $dir,
 		'folders'	=> 	$listing,
-		'config'	=>  $fileManager->config(true)
+		'config'	=>  $folderConfig->getRecursive(__DIR__, $listing)
 	]);
 
 	Container::get('template')->layout('recursive');

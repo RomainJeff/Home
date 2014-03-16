@@ -23,9 +23,25 @@ class FolderConfig
 		return $this->decode($configFile);
 	}
 
-	public function getRecursive()
+	public function getRecursive($dir, $folders)
 	{
+		foreach ($folders as $key => $folder) {
+			if ($folder == 'index.php' || $folder == 'index.html') {
+				$config[$folder] = $this->default;
+				
+                $config[$folder]['title'] = $folder;
+                $config[$folder]['icone'] = "file3";
+                $config[$folder]['couleur'] = "orange";
+                $config[$folder]['link'] = "fichier";
+            } else {
+            	$config[$folder] = $this->default;
 
+                $config[$folder]['title'] = $folder;
+                $config[$folder]['link'] = "folder";
+            }
+		}
+
+		return $config;
 	}
 
 	public function exists($configFile, $folder)
