@@ -95,7 +95,7 @@ class File
     public function config ($recursive = false)
     {
         foreach ($this->listing as $key => $dir) {
-            $fullDir = $this->folder .'/'. $dir .'/addwebhome.json';
+            $fullDir = $this->folder .'/'. $dir .'/home.json';
             
             if ( !$recursive ) {
                 if ( ! file_exists ($fullDir) ) {
@@ -120,18 +120,16 @@ class File
 
                     $this->config[$dir] = [
                         'title'     => $dir,
-                        'font'      => "Entypo",
                         'couleur'   => "orange",
-                        'icone'     => "&#9729;",
+                        'icone'     => "file3",
                         'span'      => "2",
                         'link'      => "fichier"
                     ];
                 } else {
                     $this->config[$dir] = [
                         'title'     => $dir,
-                        'font'      => "Entypo",
                         'couleur'   => "blue",
-                        'icone'     => "&#128230;",
+                        'icone'     => "folder",
                         'span'      => "2",
                         'link'      => "folder"
                     ];
