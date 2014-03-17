@@ -3,7 +3,7 @@
 <?php $this->end(); ?>
 
 <?php if ($folders == null): ?>
-	<br><h3>Ce dossier est vide</h3>
+	<br><h3>Il n'y a rien à afficher dans ce dossier</h3>
 <?php endif; ?>
 
 <?php foreach ($folders as $key => $name): ?>
