@@ -25,6 +25,8 @@ class FolderConfig
 
 	public function getRecursive($dir, $folders)
 	{
+		$config = [];
+		
 		foreach ($folders as $key => $folder) {
 			if ($folder == 'index.php' || $folder == 'index.html') {
 				$config[$folder] = $this->default;
