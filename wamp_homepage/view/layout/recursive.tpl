@@ -2,7 +2,7 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>AddwebHome: <?= $this->fetch('title'); ?></title>
+        <title>Home: <?= $this->fetch('title'); ?></title>
 
         <link rel="stylesheet" type="text/css" href="<?= $url; ?>/css/style.css">
 
