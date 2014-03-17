@@ -352,16 +352,12 @@ input[type=text]:focus {
 }
 
 .close {
-	vertical-align: text-top;
+	font-size: 15px;
 	color: rgba(0,0,0,0.3);
-	font-size: 36px;
 	display: inline-block;
-	line-height: 5px;
-	font-family: 'Entypo';
+	margin-top: 6px;
 	cursor: pointer;
 	float: right;
-	padding-top: 3px;
-	padding-right: 5px;
 }
 
 .close:hover {

@@ -2,9 +2,7 @@
     <div class="search">
         <div class="input">
             <input type="text" placeholder="Tapez votre recherche..." id="googlesearch_words">
-            <a class="close" onclick="GoogleSearch();">
-                &#10060;
-            </a>
+            <span class="close icon-cancel3" onclick="GoogleSearch();"></span>
         </div>
     </div>
 </div>
