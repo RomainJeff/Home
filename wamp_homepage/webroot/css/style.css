@@ -179,7 +179,7 @@ img.avatar {
 
 .box {
 	cursor: pointer;
-	margin-bottom: 10px;
+	margin-top: 10px;
 	height: 120px;
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
 	-webkit-transition-duration: 0.3s;
