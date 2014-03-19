@@ -5,6 +5,7 @@ class FolderConfig
 	public $default = [
 		"title"		=> 'Default',
 		"couleur"	=> 'blue',
+		"text"		=> 'white',
 		"icone"		=> 'folder',
 		"span"		=> '2',
 		"link"		=> '/index.php/folder/'

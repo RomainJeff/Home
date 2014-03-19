@@ -151,31 +151,21 @@ Routeur::connect('/config/folders/(.*)', function () {
 	$dir = $_GET[0];
 	$folderConfig = new FolderConfig();
 
-	$colors = [
-		"light",
-		"orange",
-		"blue",
-		"green",
-		"pink",
-		"purple",
-		"darkblue",
-		"red",
-		"lightblue"
-	];
-
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$title = !isset($_POST['title']) ? false : $_POST['title'];
 		$couleur = !isset($_POST['couleur']) ? false : $_POST['couleur'];
+		$texte = !isset($_POST['text']) ? false : $_POST['text'];
 		$icone = !isset($_POST['icone']) ? false : $_POST['icone'];
 		$span = !isset($_POST['span']) ? false : $_POST['span'];
 		$link = !isset($_POST['link']) ? false : $_POST['link'];
 
-		if (!$title || !$couleur || !$icone || !$span || !$link) {
+		if (!$title || !$couleur || !$icone || !$span || !$link || !$texte) {
 			echo "<center><h3 style='color:red'>Merci de remplire les champs vides</h3></center>";
 		} else {
 			$folderConfig->update(__DIR__ .'/'. $dir, [
 				'title'		=> $title,
 				'couleur' 	=> $couleur,
+				'text'		=> $texte,
 				'icone'		=> $icone,
 				'span'		=> $span,
 				'link'		=> $link
@@ -188,8 +178,7 @@ Routeur::connect('/config/folders/(.*)', function () {
 
 	Container::get('template')->set([
 		'config'	=>  $configFolder,
-		'page'		=> 'folders',
-		'colors'	=> $colors
+		'page'		=> 'folders'
 	]);
 	Container::get('template')->layout('config');
 	Container::get('template')->render('config_folders_one.tpl');

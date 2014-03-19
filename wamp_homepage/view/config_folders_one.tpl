@@ -9,15 +9,9 @@
 			<td>
 
 				<?php if ($key == 'couleur'): ?>
-					<select style="width: 300px" name="couleur">
-
-						<?php foreach ($colors as $color): ?>
-							<option value="<?= $color; ?>" <?php if ($color == $val): ?>selected<?php endif; ?>>
-								<?= $color; ?>
-							</option>
-						<?php endforeach; ?>
-
-					</select>
+					<input type="color" name="couleur" value="<?= $val; ?>">
+				<?php elseif ($key == 'text'): ?>
+					<input type="color" name="text" value="<?= $val; ?>">
 				<?php else: ?>
 					<input style="width: 300px" type="text" name="<?= $key; ?>" value="<?= $val; ?>">
 
